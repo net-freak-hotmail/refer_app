@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Gamefied Referral System | {% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,8 +26,11 @@
             <a href="/" class="text-xl text-white">Gamefied Referral System</a>
         </div>
 
-        <div class="flex item-center space-x-4">
+        <div class="flex items-center space-x-4">
             {% if request.user.is_authenticated %}
+                <a href="{% url 'task_list' %}" class="text-white hover:text-gray-200">Task List</a>
+                <a href="{% url 'checkout' %}" class="text-white hover:text-gray-200">Jazz Cash Payment</a>
+                <a href="{% url 'create_task' %}" class="text-white hover:text-gray-200">Create Task</a>
                 <a href="/profiles/" class="text-white hover:text-gray-200">Profiles</a>
                 <form id="logout-form" method="post" action="{% url 'logout-view' %}" class="inline">
                     {% csrf_token %}

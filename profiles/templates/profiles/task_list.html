@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+Task List
+{% endblock title %}
+
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Task List</h1>
+<ul class="space-y-4">
+    {% for task in tasks %}
+    <li class="border rounded-md p-4">
+        <div class="flex items-start justify-between">
+            <div>
+                <label class="block text-gray-400">Title:</label>
+                <strong>{{ task.title }}</strong>
+                <label class="block text-gray-400">Description:</label>
+                <span>{{ task.description }}</span>
+                <label class="block text-gray-400">Due date:</label>
+                <span>{{ task.due_date }}</span>
+                {% if task.created_by == profile %}
+                    <span class="text-gray-400">(Created by you)</span>
+                {% endif %}
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'create_task' %}" class="block mt-4 text-teal-500 hover:text-teal-700">Create New Task</a>
+{% endblock content %}

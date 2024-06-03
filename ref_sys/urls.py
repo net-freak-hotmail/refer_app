@@ -16,15 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import main_view,signup_view
-from profiles.views import my_recommendations_view
+from profiles.views import *
+from core.views import checkout, success
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',main_view,name='main-view'),
-    path('signup/',signup_view,name='signup-view'),
-    path('login/',auth_views.LoginView.as_view(template_name='login.html'), name='login-view'),
-    path('logout/',auth_views.LogoutView.as_view(), name='logout-view'),
-    path('profiles/',my_recommendations_view,name='my-recs-view'),
-    path('<str:ref_code>/',main_view,name='main-view'),
+    path('', main_view, name='main-view'),
+    path('signup/', signup_view, name='signup-view'),
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login-view'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout-view'),
+    path('profiles/', my_recommendations_view, name='my-recs-view'),
+    path('task-list/', task_list, name='task_list'),  # Define the task list URL above the main view URL
+    path('payment/', checkout, name="checkout"),
+    path('success', success, name="success"),
+    path('<str:ref_code>/', main_view, name='main-view'),
+    path('tasks/create/', create_task, name='create_task'),
 ]

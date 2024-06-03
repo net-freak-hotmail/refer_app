@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-60@ewgi$*#y!e_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['demo4.softaccess.co.uk']
+ALLOWED_HOSTS = ['demo4.softaccess.co.uk', '143.110.252.99']
 
 LOGOUT_REDIRECT_URL='/'
 LOGIN_REDIRECT_URL='/'
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'profiles',
+    'core',
     'crispy_forms',
     'crispy_tailwind',
 ]
@@ -114,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Karachi'
 
 USE_I18N = True
 

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JazzCash Payment</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2, h3 {
+            color: #555;
+        }
+
+        p {
+            color: #777;
+            margin: 5px 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="checkbox"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="checkbox"] {
+            width: auto;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .jazzcash-button {
+            background-color: #d50606;
+            color: white;
+            padding: 15px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .jazzcash-button:hover {
+            background-color: #b30505;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .customer-info {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>JazzCash Payment</h1>
+            <h2>Product: {{ product_name }}</h2>
+            <h2>Price: {{ product_price }}</h2>
+        </div>
+
+        <div class="customer-info">
+            <h3>Customer Information</h3>
+            <p>Name: {{ customer_name }}</p>
+            <p>Email: {{ customer_email }}</p>
+            <p>Phone Number: {{ customer_phone }}</p>
+            <p>Address: {{ customer_address }}</p>
+            <p>Invoice Number: {{ invoice_number }}</p>
+        </div>
+
+        <form method="post" action="https://sandbox.jazzcash.com.pk/CustomerPortal/transactionmanagement/merchantform/">
+            {% csrf_token %}
+            {% for key, value in post_data.items %}
+                <input type="hidden" name="{{ key }}" value="{{ value }}">
+            {% endfor %}
+            
+            <div class="form-group">
+                <label for="authorization">
+                    <input type="checkbox" id="authorization" name="authorization" required>
+                    I authorize this payment
+                </label>
+            </div>
+
+            <button type="submit" class="jazzcash-button">Pay with JazzCash</button>
+        </form>
+    </div>
+    <script>
+        function submitForm() {
+            document.forms[0].submit();
+        }
+    </script>
+</body>
+</html>
